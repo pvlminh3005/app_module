@@ -42,7 +42,6 @@ class SigninController extends GetxController {
         await AuthPreference.setToken('${usernameController.text}');
 
         await Future.delayed(2.seconds);
-        print(AuthPreference.getToken());
         Get.offAndToNamed(Routes.HOME);
       }
     }

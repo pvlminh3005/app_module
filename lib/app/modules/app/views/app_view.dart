@@ -39,7 +39,6 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   void initState() {
     var token = AuthPreference.getToken();
-    print(token);
     2.delay(() {
       Get.offAllNamed(
         token != null ? Routes.HOME : Routes.SIGNIN,
