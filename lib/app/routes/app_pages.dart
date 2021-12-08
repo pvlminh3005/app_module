@@ -1,3 +1,5 @@
+import 'package:app_module/app/modules/app/bindings/app_binding.dart';
+import 'package:app_module/app/modules/app/views/app_view.dart';
 import 'package:get/get.dart';
 
 import 'package:app_module/app/modules/home/bindings/home_binding.dart';
@@ -10,9 +12,14 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.SIGNIN;
+  static const INITIAL = Routes.APP;
 
   static final routes = [
+    GetPage(
+      name: _Paths.APP,
+      page: () => AppView(),
+      binding: AppBinding(),
+    ),
     GetPage(
       name: _Paths.HOME,
       page: () => HomeView(),

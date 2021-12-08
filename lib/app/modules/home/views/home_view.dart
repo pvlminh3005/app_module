@@ -1,9 +1,12 @@
 import 'package:app_module/app/cores/value/app_color.dart';
 import 'package:app_module/app/cores/value/dimen.dart';
 import 'package:app_module/app/cores/value/font_size.dart';
+import 'package:app_module/app/modules/signin/controllers/signin_controller.dart';
+import 'package:app_module/app/utils/auth_preference.dart';
 import 'package:app_module/app/widgets/base/custom_text.dart';
 import 'package:app_module/app/widgets/custom_loading.dart';
 import 'package:app_module/app/widgets/email_item.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -12,6 +15,7 @@ import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
   HomeController get home => Get.find();
+  final signin = Get.put(SigninController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,37 +84,52 @@ class HomeView extends GetView<HomeController> {
         vertical: AppDimen.spacing_1,
         horizontal: AppDimen.spacing_2,
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: AppDimen.spacing_3),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CustomText(
-                  'All Emails',
-                  fontSize: FontSize.BIG_1,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w700,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: AppDimen.spacing_3),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CustomText(
+                      'All Emails',
+                      fontSize: FontSize.BIG_1,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w700,
+                    ),
+                    CustomText(
+                      'You have got 3 new emails',
+                      color: Colors.white,
+                      margin: EdgeInsets.only(top: AppDimen.spacing_1),
+                    ),
+                  ],
                 ),
-                CustomText(
-                  'You have got 3 new emails',
-                  color: Colors.white,
-                  margin: EdgeInsets.only(top: AppDimen.spacing_1),
+              ),
+              CircleAvatar(
+                child: Icon(
+                  Icons.add,
+                  color: kColorGrey,
+                  size: AppDimen.icSizeBig,
                 ),
-              ],
-            ),
+                backgroundColor: Colors.white,
+                radius: AppDimen.icSizeBig,
+              ),
+            ],
           ),
-          CircleAvatar(
+          InkWell(
             child: Icon(
-              Icons.add,
-              color: kColorGrey,
+              CupertinoIcons.square_arrow_right,
               size: AppDimen.icSizeBig,
+              color: Colors.white,
             ),
-            backgroundColor: Colors.white,
-            radius: AppDimen.icSizeBig,
-          ),
+            onTap: () async {
+              await signin.logoutApp();
+            },
+          )
         ],
       ),
     );

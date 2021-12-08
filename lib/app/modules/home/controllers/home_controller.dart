@@ -49,7 +49,9 @@ class HomeController extends GetxController {
   Future addInfinityData() async {
     _isLoadingInfinity.value = true;
     var data = await EmailApi.fetchEmails();
-    _listEmails.addAll(data);
-    _isLoadingInfinity.value = false;
+    await 1.delay(() {
+      _listEmails.addAll(data);
+      _isLoadingInfinity.value = false;
+    });
   }
 }

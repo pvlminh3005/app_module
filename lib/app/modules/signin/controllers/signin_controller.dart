@@ -1,4 +1,5 @@
 import 'package:app_module/app/routes/app_pages.dart';
+import 'package:app_module/app/utils/auth_preference.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -37,9 +38,19 @@ class SigninController extends GetxController {
         return;
       } else {
         _errorText.value = '';
-        await Future.delayed(3.seconds);
+
+        await AuthPreference.setToken('${usernameController.text}');
+
+        await Future.delayed(2.seconds);
+        print(AuthPreference.getToken());
         Get.offAndToNamed(Routes.HOME);
       }
     }
+  }
+
+  Future<void> logoutApp() async {
+    await Future.delayed(3.seconds);
+    await AuthPreference.removeToken();
+    await Get.offAndToNamed(Routes.SIGNIN);
   }
 }
