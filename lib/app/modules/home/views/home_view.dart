@@ -2,7 +2,6 @@ import 'package:app_module/app/cores/value/app_color.dart';
 import 'package:app_module/app/cores/value/dimen.dart';
 import 'package:app_module/app/cores/value/font_size.dart';
 import 'package:app_module/app/modules/signin/controllers/signin_controller.dart';
-import 'package:app_module/app/utils/auth_preference.dart';
 import 'package:app_module/app/widgets/base/custom_text.dart';
 import 'package:app_module/app/widgets/custom_loading.dart';
 import 'package:app_module/app/widgets/email_item.dart';
@@ -27,6 +26,7 @@ class HomeView extends GetView<HomeController> {
         child: Column(
           children: [
             Container(
+              padding: EdgeInsets.only(top: AppDimen.spacing_1 + 2),
               decoration: BoxDecoration(
                 color: kPrimaryColor,
                 borderRadius: BorderRadius.only(
@@ -138,7 +138,7 @@ class HomeView extends GetView<HomeController> {
   Widget _buildListEmail() {
     return Expanded(
       child: Padding(
-        padding: EdgeInsets.all(AppDimen.spacing_1),
+        padding: EdgeInsets.symmetric(horizontal: AppDimen.spacing_1),
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [
