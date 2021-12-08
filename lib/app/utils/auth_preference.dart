@@ -9,7 +9,8 @@ class AuthPreference {
   static const _keyToken = 'keyAuth';
   static String get keyToken => _keyToken;
 
-  static Future init() async => await SharedPreferences.getInstance();
+  static Future init() async =>
+      preferences = await SharedPreferences.getInstance();
 
   static Future setToken(String token) async =>
       await preferences?.setString(_keyToken, token);
